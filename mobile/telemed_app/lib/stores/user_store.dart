@@ -45,4 +45,32 @@ abstract class _UserStoreBase with Store {
   void login() {
     isLoggedIn = true;
   }
+
+  @computed
+  String? get passwordError {
+    if (isPasswordValid) {
+      return null;
+    } else {
+      return 'Insira uma senha válida';
+    }
+  }
+
+  @computed
+  String? get emailError {
+    if (!isEmailValid) {
+      return 'Insira um email válido';
+    } else {
+      return null;
+    }
+  }
+
+  @computed
+  String? get phoneError {
+    final regex = RegExp(r'([0-9]{2,3})?(\([0-9]{2}\))([0-9]{4,5})([0-9]{4})');
+    if (regex.hasMatch(phone)) {
+      return 'Insira um telefone válido';
+    } else {
+      return null;
+    }
+  }
 }
