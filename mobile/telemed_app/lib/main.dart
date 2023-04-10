@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:telemed_app/theme_provider.dart';
+import 'package:telemed_app/themes/app_themes.dart';
 import 'package:telemed_app/view/login_screen.dart';
 
 void main() {
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
         builder: (context, theme, _) {
           return MaterialApp(
               title: 'Flutter Demo',
-              theme: theme.isDark ? ThemeData.dark() : ThemeData.light(),
+              theme:
+                  theme.isDark ? AppThemes().darkTheme : AppThemes().whiteTheme,
               home: LoginScreen());
         },
       ),
