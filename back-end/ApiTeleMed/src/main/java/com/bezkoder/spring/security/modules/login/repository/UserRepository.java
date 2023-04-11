@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.modules.login.repository;
+  package com.bezkoder.spring.security.modules.login.repository;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -15,4 +15,5 @@ public interface UserRepository extends JpaRepository<User, UUID>
   Boolean existsByUsername(String username);
   Boolean existsByEmail(String email);
   Optional<User> findById(long id);
+  Optional<User> findByEmail(String email);
 }

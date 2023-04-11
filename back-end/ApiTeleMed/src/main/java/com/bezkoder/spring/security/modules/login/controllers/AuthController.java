@@ -35,6 +35,7 @@ import com.bezkoder.spring.security.modules.login.repository.RoleRepository;
 import com.bezkoder.spring.security.modules.login.security.jwt.JwtUtils;
 import com.bezkoder.spring.security.modules.login.security.services.UserDetailsImpl;
 import com.bezkoder.spring.security.modules.login.services.UserService;
+import static com.bezkoder.spring.security.modules.login.models.AuthProvider.google;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -95,7 +96,7 @@ public class AuthController
       User user = new User
       (
         signUpRequest.getUsername(), signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()), signUpRequest.getName(),
-        signUpRequest.getNumber(), signUpRequest.getStatus(), signUpRequest.getProfilePicture()              
+        signUpRequest.getNumber(), signUpRequest.getStatus(), signUpRequest.getProfilePicture()            
       );
 
       Set<String> strRoles = signUpRequest.getRoles();

@@ -8,13 +8,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import com.bezkoder.spring.security.modules.login.security.jwt.AuthEntryPointJwt;
 import com.bezkoder.spring.security.modules.login.security.jwt.AuthTokenFilter;
 import com.bezkoder.spring.security.modules.login.security.services.UserDetailsServiceImpl;
 
@@ -28,9 +23,6 @@ public class WebSecurityConfig
   
   @Autowired
   UserDetailsServiceImpl userDetailsService;
-
-  @Autowired
-  private AuthEntryPointJwt unauthorizedHandler;
 
   @Bean
   public AuthTokenFilter authenticationJwtTokenFilter() 
@@ -61,25 +53,4 @@ public class WebSecurityConfig
     return new BCryptPasswordEncoder();
   }
   
-  @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception 
-  {
-
-    http.cors().and().csrf().disable()
-        .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-        .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-        .antMatchers("/api/user/**").permitAll()
-        .antMatchers("/**").permitAll()
-        .antMatchers(h2ConsolePath + "/**").permitAll()
-        .anyRequest().authenticated();
-
-    // http.authorizeRequests().anyRequest().authenticated().and().oauth2Login();
-    
-    http.headers().frameOptions().sameOrigin();
-    http.authenticationProvider(authenticationProvider());
-    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-    
-    return http.build();
-  }
 }

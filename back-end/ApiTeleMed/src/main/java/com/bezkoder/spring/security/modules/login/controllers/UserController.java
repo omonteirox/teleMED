@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bezkoder.spring.security.modules.login.exception.ResourceNotFoundException;
 import com.bezkoder.spring.security.modules.login.models.Role;
 import com.bezkoder.spring.security.modules.login.models.User;
 
@@ -30,7 +31,8 @@ import com.bezkoder.spring.security.modules.login.payload.request.SignupRequest;
 
 import com.bezkoder.spring.security.modules.login.repository.RoleRepository;
 import com.bezkoder.spring.security.modules.login.repository.UserRepository;
-
+import com.bezkoder.spring.security.modules.login.security.oauth2.util.CurrentUser;
+import com.bezkoder.spring.security.modules.login.security.oauth2.util.UserPrincipal;
 import com.bezkoder.spring.security.modules.login.services.UserService;
 
 
@@ -139,10 +141,17 @@ public class UserController
 
   }
 
-  @GetMapping("/root")
-  @PreAuthorize("hasRole('ROOT')")
+  @GetMapping("/role")
+  @PreAuthorize("hasRole('ROOT') OR hasRole('USER')")
   public String adminAccess()
   {
-      return "Root Board.";
+      return "Board.";
+  }
+
+  @GetMapping("/profile")
+  @PreAuthorize("hasRole('ROOT') OR hasRole('USER')")
+  public User getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
+       return userRepository.findById(userPrincipal.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
   }
 }
