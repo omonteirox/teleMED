@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:telemed_app/routes/routes.dart';
 import 'package:telemed_app/theme_provider.dart';
+import 'package:telemed_app/themes/app_themes.dart';
 import 'package:telemed_app/view/login_screen.dart';
 
 void main() {
@@ -15,9 +17,12 @@ class MyApp extends StatelessWidget {
       child: Consumer<ThemeProvider>(
         builder: (context, theme, _) {
           return MaterialApp(
-              title: 'Flutter Demo',
-              theme: theme.isDark ? ThemeData.dark() : ThemeData.light(),
-              home: LoginScreen());
+            title: 'Flutter Demo',
+            theme:
+                theme.isDark ? AppThemes().darkTheme : AppThemes().whiteTheme,
+            routes: appRoutes,
+            initialRoute: '/',
+          );
         },
       ),
     );
