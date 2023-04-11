@@ -29,11 +29,6 @@ public class UserService
         return userRepository.save(User);
     }
 
-    public Optional<User> findByUsername(String username) 
-    {
-        return userRepository.findByUsername(username);
-    }
-
     public Optional<User> findById(long id) 
     {
         return userRepository.findById(id);
@@ -44,10 +39,7 @@ public class UserService
         return userRepository.existsByEmail(email);
     }
 
-    public Boolean existsByUsername(String username)
-    {
-        return userRepository.existsByUsername(username);
-    }
+
 
     @Transactional
     public void delete(User UserModel) 
