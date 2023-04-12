@@ -9,6 +9,13 @@ part of 'user_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$UserStore on _UserStoreBase, Store {
+  Computed<bool>? _$isLoadingComputed;
+
+  @override
+  bool get isLoading =>
+      (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
+              name: '_UserStoreBase.isLoading'))
+          .value;
   Computed<bool>? _$isEmailValidComputed;
 
   @override
@@ -30,6 +37,27 @@ mixin _$UserStore on _UserStoreBase, Store {
       (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
               name: '_UserStoreBase.isFormValid'))
           .value;
+  Computed<String?>? _$passwordErrorComputed;
+
+  @override
+  String? get passwordError =>
+      (_$passwordErrorComputed ??= Computed<String?>(() => super.passwordError,
+              name: '_UserStoreBase.passwordError'))
+          .value;
+  Computed<String?>? _$emailErrorComputed;
+
+  @override
+  String? get emailError =>
+      (_$emailErrorComputed ??= Computed<String?>(() => super.emailError,
+              name: '_UserStoreBase.emailError'))
+          .value;
+  Computed<String?>? _$phoneErrorComputed;
+
+  @override
+  String? get phoneError =>
+      (_$phoneErrorComputed ??= Computed<String?>(() => super.phoneError,
+              name: '_UserStoreBase.phoneError'))
+          .value;
 
   late final _$nameAtom = Atom(name: '_UserStoreBase.name', context: context);
 
@@ -43,6 +71,21 @@ mixin _$UserStore on _UserStoreBase, Store {
   set name(String value) {
     _$nameAtom.reportWrite(value, super.name, () {
       super.name = value;
+    });
+  }
+
+  late final _$errorAtom = Atom(name: '_UserStoreBase.error', context: context);
+
+  @override
+  String? get error {
+    _$errorAtom.reportRead();
+    return super.error;
+  }
+
+  @override
+  set error(String? value) {
+    _$errorAtom.reportWrite(value, super.error, () {
+      super.error = value;
     });
   }
 
@@ -124,6 +167,38 @@ mixin _$UserStore on _UserStoreBase, Store {
     });
   }
 
+  late final _$loadingAtom =
+      Atom(name: '_UserStoreBase.loading', context: context);
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
+  late final _$registerAsyncAction =
+      AsyncAction('_UserStoreBase.register', context: context);
+
+  @override
+  Future<void> register() {
+    return _$registerAsyncAction.run(() => super.register());
+  }
+
+  late final _$loginAsyncAction =
+      AsyncAction('_UserStoreBase.login', context: context);
+
+  @override
+  Future<void> login() {
+    return _$loginAsyncAction.run(() => super.login());
+  }
+
   late final _$_UserStoreBaseActionController =
       ActionController(name: '_UserStoreBase', context: context);
 
@@ -197,14 +272,20 @@ mixin _$UserStore on _UserStoreBase, Store {
   String toString() {
     return '''
 name: ${name},
+error: ${error},
 phone: ${phone},
 email: ${email},
 password: ${password},
 showPassword: ${showPassword},
 isLoggedIn: ${isLoggedIn},
+loading: ${loading},
+isLoading: ${isLoading},
 isEmailValid: ${isEmailValid},
 isPasswordValid: ${isPasswordValid},
-isFormValid: ${isFormValid}
+isFormValid: ${isFormValid},
+passwordError: ${passwordError},
+emailError: ${emailError},
+phoneError: ${phoneError}
     ''';
   }
 }

@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
     name = "users",
     uniqueConstraints = 
     {
-       @UniqueConstraint(columnNames = "username"),
        @UniqueConstraint(columnNames = "email")
     }
 )
@@ -25,9 +24,6 @@ public class User
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank
-  @Size(max = 20)
-  private String username;
 
   @NotBlank
   @Size(max = 120)
@@ -42,15 +38,6 @@ public class User
   @Size(max = 120)
   private String password;
 
-  @NotBlank
-  @Size(max = 20)
-  private String number;
-
-  @NotBlank
-  private String profilePicture;
-  
-  @NotBlank
-  private String status;
 
   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -62,17 +49,12 @@ public class User
 
   public User
   (
-    String username, String email, String password, String name,
-    String number, String status, String profilePicture
+		String name, String email, String password
   ) 
   {
-    this.username = username;
+	this.name = name;
     this.email = email;
     this.password = password;
-    this.name = name;
-    this.number = number;
-    this.status = status;
-    this.profilePicture = profilePicture;
   }
 
   public Long getId() {
@@ -91,14 +73,6 @@ public class User
     this.name = name;
   }
 
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
 
   public String getEmail() {
     return email;
@@ -123,31 +97,4 @@ public class User
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
   }
-
-  
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  public String getNumber() {
-    return number;
-  }
-
-  public void setNumber(String number) {
-    this.number = number;
-  }
-
-  public String getProfilePicture() {
-    return profilePicture;
-  }
-
-  public void setProfilePicture(String profilePicture) {
-    this.profilePicture = profilePicture;
-  }
-
 }

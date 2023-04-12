@@ -18,8 +18,6 @@ public class UserDetailsImpl implements UserDetails
 
   private Long id;
 
-  private String username;
-
   private String email;
 
   @JsonIgnore
@@ -27,10 +25,9 @@ public class UserDetailsImpl implements UserDetails
 
   private Collection<? extends GrantedAuthority> authorities;
 
-  public UserDetailsImpl(Long id, String username, String email, String password,Collection<? extends GrantedAuthority> authorities) 
+  public UserDetailsImpl(Long id,  String email, String password,Collection<? extends GrantedAuthority> authorities) 
   {
     this.id = id;
-    this.username = username;
     this.email = email;
     this.password = password;
     this.authorities = authorities;
@@ -46,7 +43,6 @@ public class UserDetailsImpl implements UserDetails
     return new UserDetailsImpl
     (
         user.getId(), 
-        user.getUsername(), 
         user.getEmail(),
         user.getPassword(), 
         authorities
@@ -69,11 +65,6 @@ public class UserDetailsImpl implements UserDetails
   @Override
   public String getPassword() {
     return password;
-  }
-
-  @Override
-  public String getUsername() {
-    return username;
   }
 
   @Override
@@ -108,4 +99,10 @@ public class UserDetailsImpl implements UserDetails
 
     return Objects.equals(id, user.id);
   }
+
+@Override
+public String getUsername() {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
