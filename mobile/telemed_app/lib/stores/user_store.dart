@@ -39,6 +39,11 @@ abstract class _UserStoreBase with Store {
     password = '';
   }
 
+  @observable
+  bool loading = false;
+
+  @computed
+  bool get isLoading => loading;
   @computed
   bool get isEmailValid => email.isNotEmpty && email.contains('@');
 
@@ -90,6 +95,8 @@ abstract class _UserStoreBase with Store {
       await SignInController.login(email, password);
     } catch (e) {
       error = e.toString();
+    } finally {
+      loading = false;
     }
   }
 }

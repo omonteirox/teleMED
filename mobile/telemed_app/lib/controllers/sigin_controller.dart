@@ -24,7 +24,8 @@ class SignInController {
   }
 
   static Future<void> login(String email, String password) async {
-    final response = await http.post(
+    final response = await http
+        .post(
       Uri.parse('$_baseUrl/auth/signin'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -33,6 +34,12 @@ class SignInController {
         'email': email,
         'password': password,
       }),
+    )
+        .timeout(
+      const Duration(seconds: 5),
+      onTimeout: () {
+        throw Exception('Tempo Limite excedido');
+      },
     );
     if (response.statusCode != 200) {
       final parseBody = jsonDecode(response.body);
