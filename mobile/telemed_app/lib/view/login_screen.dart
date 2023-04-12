@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:telemed_app/components/appbar_component.dart';
+import 'package:telemed_app/stores/user_store.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({
@@ -9,6 +10,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _userStore = UserStore();
     return Scaffold(
       appBar: AppBarMed(title: "TeleMed"),
       body: SingleChildScrollView(
@@ -18,6 +20,7 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
+                onChanged: _userStore.setEmail,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8)),
@@ -28,6 +31,7 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
+                onChanged: _userStore.setPassword,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8)),
@@ -52,7 +56,33 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await _userStore.login();
+                    if (_userStore.error != null) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('Erro'),
+                            content: Text(_userStore.error!),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(context, 'Cancel'),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      Navigator.pushNamed(context, '/home');
+                    }
+                  },
                   child: Text("Fazer Login"),
                 ),
                 ElevatedButton(

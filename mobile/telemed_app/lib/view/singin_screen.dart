@@ -70,9 +70,20 @@ class SignInScreen extends StatelessWidget {
               Observer(builder: (_) {
                 return ElevatedButton(
                   onPressed: _userStore.isFormValid
-                      ? () {
-                          SignInController.registerUser(
-                              _userStore.name, _userStore.password);
+                      ? () async {
+                          await _userStore.register();
+                          print(_userStore.error);
+                          if (_userStore.error != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(_userStore.error!),
+                              backgroundColor: Colors.red,
+                            ));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Usuário criado com sucesso"),
+                              backgroundColor: Colors.green,
+                            ));
+                          }
                         }
                       : null,
                   child: Text("Realizar Cadastro"),

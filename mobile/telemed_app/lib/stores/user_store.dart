@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:mobx/mobx.dart';
+import 'package:telemed_app/controllers/sigin_controller.dart';
 part 'user_store.g.dart';
 
 class UserStore = _UserStoreBase with _$UserStore;
@@ -6,6 +9,8 @@ class UserStore = _UserStoreBase with _$UserStore;
 abstract class _UserStoreBase with Store {
   @observable
   String name = '';
+  @observable
+  String? error;
   @action
   setName(String value) => name = value;
   @observable
@@ -42,10 +47,6 @@ abstract class _UserStoreBase with Store {
 
   @computed
   bool get isFormValid => isEmailValid && isPasswordValid;
-  void login() {
-    isLoggedIn = true;
-  }
-
   @computed
   String? get passwordError {
     if (isPasswordValid) {
@@ -71,6 +72,24 @@ abstract class _UserStoreBase with Store {
       return 'Insira um telefone válido';
     } else {
       return null;
+    }
+  }
+
+  @action
+  Future<void> register() async {
+    try {
+      await SignInController.registerUser(email, password, name);
+    } catch (e) {
+      error = e.toString();
+    }
+  }
+
+  @action
+  Future<void> login() async {
+    try {
+      await SignInController.login(email, password);
+    } catch (e) {
+      error = e.toString();
     }
   }
 }

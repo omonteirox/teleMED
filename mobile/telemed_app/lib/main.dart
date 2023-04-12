@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:telemed_app/routes/routes.dart';
 import 'package:telemed_app/theme_provider.dart';
 import 'package:telemed_app/themes/app_themes.dart';
-import 'package:telemed_app/view/login_screen.dart';
 
 void main() {
   runApp(MyApp());

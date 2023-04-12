@@ -2,13 +2,30 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../model/user.dart';
-
 class SignInController {
-  static const _baseUrl = 'http://localhost:8080/api/auth';
-  static Future<User> registerUser(String email, String password) async {
+  static const _baseUrl = 'http://192.168.0.113:8080/api';
+  static Future<void> registerUser(
+      String email, String password, String name) async {
     final response = await http.post(
-      Uri.parse('$_baseUrl/signup'),
+      Uri.parse('$_baseUrl/auth/signup'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'name': name,
+        'email': email,
+        'password': password,
+      }),
+    );
+    if (response.statusCode != 200) {
+      final parseBody = jsonDecode(response.body);
+      throw Exception(parseBody['error']);
+    }
+  }
+
+  static Future<void> login(String email, String password) async {
+    final response = await http.post(
+      Uri.parse('$_baseUrl/auth/signin'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -17,12 +34,9 @@ class SignInController {
         'password': password,
       }),
     );
-
-    if (response.statusCode == 201) {
-      final data = jsonDecode(response.body);
-      return User.fromJson(data);
-    } else {
-      throw Exception('Failed to register user');
+    if (response.statusCode != 200) {
+      final parseBody = jsonDecode(response.body);
+      throw Exception(parseBody['error']);
     }
   }
 }
