@@ -1,0 +1,27 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer class="abalogin" opened>
+        <h1 id="login">Login</h1>
+        <h5>Faça login com a conta Google</h5>
+        <a id="loginGoogle" mat-raised-button href="https://www.google.com/" target="_blank">Login com o Google</a>
+        <mat-divider id="divider"></mat-divider>
+
+        <form class="form">
+            <div class="form-group">
+                <input type="text" id="username" name="username" placeholder="Email" required class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Senha" required class="form-control">
+            </div>
+            <mat-checkbox class="chkBox">Lembrar senha</mat-checkbox> <br>
+            <a id="btnEntrar" mat-raised-button routerLink="login" target="_blank">Entrar</a>
+        </form>
+
+        <a href=""><h1 id="textSenha">Esqueci minha senha</h1></a>
+
+        <h1 id="textCadastro">Não possui conta? <a style="font-weight: bold; text-decoration: none; color: #1F1F1F;" href="../cadastro/cadastro.component.html">Cadastre-se</a></h1>
+
+    </mat-drawer>
+    <mat-drawer-content class="login2">
+
+    </mat-drawer-content>
+</mat-drawer-container>
