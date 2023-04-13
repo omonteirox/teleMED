@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:telemed_app/components/appbar_component.dart';
 import 'package:telemed_app/stores/auth_store.dart';
 import 'package:telemed_app/stores/user_store.dart';
@@ -17,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _userStore = UserStore();
   final _authStore = AuthStore();
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
   @override
@@ -179,11 +181,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {},
                         child: Text("Esqueci minha senha"),
                       ),
-                      // SignInButton(
-                      //   Buttons.Google,
-                      //   text: "Entre com o Google",
-                      //   onPressed: () {},
-                      // )
+                      SignInButton(
+                        Buttons.Google,
+                        text: "Entre com o Google",
+                        onPressed: () async {
+                          try {
+                            await googleSignIn.signIn().then((value) {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/home', (route) => false);
+                            });
+                          } catch (e) {
+                            print('Erro ao fazer login com o Google: $e');
+                          }
+                        },
+                      )
                     ],
                   ),
                 ),
