@@ -87,7 +87,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 return ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      await _authStore.register(UserStore());
+                      await _authStore.register(_userStore);
                       if (_authStore.error != null) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(_authStore.error!),
