@@ -9,13 +9,6 @@ part of 'user_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$UserStore on _UserStoreBase, Store {
-  Computed<bool>? _$isLoadingComputed;
-
-  @override
-  bool get isLoading =>
-      (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
-              name: '_UserStoreBase.isLoading'))
-          .value;
   Computed<bool>? _$isEmailValidComputed;
 
   @override
@@ -59,6 +52,22 @@ mixin _$UserStore on _UserStoreBase, Store {
               name: '_UserStoreBase.phoneError'))
           .value;
 
+  late final _$visiblePasswordAtom =
+      Atom(name: '_UserStoreBase.visiblePassword', context: context);
+
+  @override
+  bool get visiblePassword {
+    _$visiblePasswordAtom.reportRead();
+    return super.visiblePassword;
+  }
+
+  @override
+  set visiblePassword(bool value) {
+    _$visiblePasswordAtom.reportWrite(value, super.visiblePassword, () {
+      super.visiblePassword = value;
+    });
+  }
+
   late final _$nameAtom = Atom(name: '_UserStoreBase.name', context: context);
 
   @override
@@ -71,21 +80,6 @@ mixin _$UserStore on _UserStoreBase, Store {
   set name(String value) {
     _$nameAtom.reportWrite(value, super.name, () {
       super.name = value;
-    });
-  }
-
-  late final _$errorAtom = Atom(name: '_UserStoreBase.error', context: context);
-
-  @override
-  String? get error {
-    _$errorAtom.reportRead();
-    return super.error;
-  }
-
-  @override
-  set error(String? value) {
-    _$errorAtom.reportWrite(value, super.error, () {
-      super.error = value;
     });
   }
 
@@ -135,19 +129,19 @@ mixin _$UserStore on _UserStoreBase, Store {
     });
   }
 
-  late final _$showPasswordAtom =
-      Atom(name: '_UserStoreBase.showPassword', context: context);
+  late final _$rememberPasswordAtom =
+      Atom(name: '_UserStoreBase.rememberPassword', context: context);
 
   @override
-  bool get showPassword {
-    _$showPasswordAtom.reportRead();
-    return super.showPassword;
+  bool get rememberPassword {
+    _$rememberPasswordAtom.reportRead();
+    return super.rememberPassword;
   }
 
   @override
-  set showPassword(bool value) {
-    _$showPasswordAtom.reportWrite(value, super.showPassword, () {
-      super.showPassword = value;
+  set rememberPassword(bool value) {
+    _$rememberPasswordAtom.reportWrite(value, super.rememberPassword, () {
+      super.rememberPassword = value;
     });
   }
 
@@ -167,40 +161,51 @@ mixin _$UserStore on _UserStoreBase, Store {
     });
   }
 
-  late final _$loadingAtom =
-      Atom(name: '_UserStoreBase.loading', context: context);
+  late final _$saveRememberAsyncAction =
+      AsyncAction('_UserStoreBase.saveRemember', context: context);
 
   @override
-  bool get loading {
-    _$loadingAtom.reportRead();
-    return super.loading;
+  Future<bool> saveRemember() {
+    return _$saveRememberAsyncAction.run(() => super.saveRemember());
   }
 
+  late final _$readRememberAsyncAction =
+      AsyncAction('_UserStoreBase.readRemember', context: context);
+
   @override
-  set loading(bool value) {
-    _$loadingAtom.reportWrite(value, super.loading, () {
-      super.loading = value;
-    });
+  Future<bool> readRemember() {
+    return _$readRememberAsyncAction.run(() => super.readRemember());
   }
 
-  late final _$registerAsyncAction =
-      AsyncAction('_UserStoreBase.register', context: context);
+  late final _$savePasswordAsyncAction =
+      AsyncAction('_UserStoreBase.savePassword', context: context);
 
   @override
-  Future<void> register() {
-    return _$registerAsyncAction.run(() => super.register());
+  Future<void> savePassword() {
+    return _$savePasswordAsyncAction.run(() => super.savePassword());
   }
 
-  late final _$loginAsyncAction =
-      AsyncAction('_UserStoreBase.login', context: context);
+  late final _$readPasswordAsyncAction =
+      AsyncAction('_UserStoreBase.readPassword', context: context);
 
   @override
-  Future<void> login() {
-    return _$loginAsyncAction.run(() => super.login());
+  Future<String> readPassword() {
+    return _$readPasswordAsyncAction.run(() => super.readPassword());
   }
 
   late final _$_UserStoreBaseActionController =
       ActionController(name: '_UserStoreBase', context: context);
+
+  @override
+  dynamic setVisiblePassword(bool value) {
+    final _$actionInfo = _$_UserStoreBaseActionController.startAction(
+        name: '_UserStoreBase.setVisiblePassword');
+    try {
+      return super.setVisiblePassword(value);
+    } finally {
+      _$_UserStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setName(String value) {
@@ -236,6 +241,17 @@ mixin _$UserStore on _UserStoreBase, Store {
   }
 
   @override
+  dynamic setRememberPassword(bool value) {
+    final _$actionInfo = _$_UserStoreBaseActionController.startAction(
+        name: '_UserStoreBase.setRememberPassword');
+    try {
+      return super.setRememberPassword(value);
+    } finally {
+      _$_UserStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setPassword(String value) {
     final _$actionInfo = _$_UserStoreBaseActionController.startAction(
         name: '_UserStoreBase.setPassword');
@@ -247,39 +263,15 @@ mixin _$UserStore on _UserStoreBase, Store {
   }
 
   @override
-  void toggleShowPassword() {
-    final _$actionInfo = _$_UserStoreBaseActionController.startAction(
-        name: '_UserStoreBase.toggleShowPassword');
-    try {
-      return super.toggleShowPassword();
-    } finally {
-      _$_UserStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void loggout() {
-    final _$actionInfo = _$_UserStoreBaseActionController.startAction(
-        name: '_UserStoreBase.loggout');
-    try {
-      return super.loggout();
-    } finally {
-      _$_UserStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
+visiblePassword: ${visiblePassword},
 name: ${name},
-error: ${error},
 phone: ${phone},
 email: ${email},
 password: ${password},
-showPassword: ${showPassword},
+rememberPassword: ${rememberPassword},
 isLoggedIn: ${isLoggedIn},
-loading: ${loading},
-isLoading: ${isLoading},
 isEmailValid: ${isEmailValid},
 isPasswordValid: ${isPasswordValid},
 isFormValid: ${isFormValid},

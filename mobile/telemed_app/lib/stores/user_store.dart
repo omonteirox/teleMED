@@ -1,16 +1,21 @@
-import 'dart:math';
-
 import 'package:mobx/mobx.dart';
-import 'package:telemed_app/controllers/sigin_controller.dart';
+import 'package:telemed_app/stores/auth_store.dart';
+
+import '../secure/secure.dart';
+
 part 'user_store.g.dart';
 
 class UserStore = _UserStoreBase with _$UserStore;
 
 abstract class _UserStoreBase with Store {
+  final authStore = AuthStore();
+  final _secureStorage = SecureData();
+  @observable
+  bool visiblePassword = true;
+  @action
+  setVisiblePassword(bool value) => visiblePassword = value;
   @observable
   String name = '';
-  @observable
-  String? error;
   @action
   setName(String value) => name = value;
   @observable
@@ -23,33 +28,18 @@ abstract class _UserStoreBase with Store {
   setEmail(String value) => email = value;
   @observable
   String password = '';
+  @observable
+  bool rememberPassword = false;
+  @action
+  setRememberPassword(bool value) => rememberPassword = value;
   @action
   setPassword(String value) => password = value;
   @observable
-  bool showPassword = false;
-
-  @observable
   bool isLoggedIn = false;
-  @action
-  void toggleShowPassword() => showPassword = !showPassword;
-  @action
-  void loggout() {
-    isLoggedIn = false;
-    email = '';
-    password = '';
-  }
-
-  @observable
-  bool loading = false;
-
-  @computed
-  bool get isLoading => loading;
   @computed
   bool get isEmailValid => email.isNotEmpty && email.contains('@');
-
   @computed
   bool get isPasswordValid => password.isNotEmpty && password.length >= 6;
-
   @computed
   bool get isFormValid => isEmailValid && isPasswordValid;
   @computed
@@ -81,22 +71,52 @@ abstract class _UserStoreBase with Store {
   }
 
   @action
-  Future<void> register() async {
+  Future<bool> saveRemember() async {
     try {
-      await SignInController.registerUser(email, password, name);
-    } catch (e) {
-      error = e.toString();
-    }
+      await _secureStorage.saveRemember(rememberPassword);
+      return true;
+    } catch (e) {}
+    return false;
   }
 
   @action
-  Future<void> login() async {
+  Future<bool> readRemember() async {
     try {
-      await SignInController.login(email, password);
+      rememberPassword = await _secureStorage.readRemember();
+      return rememberPassword;
     } catch (e) {
-      error = e.toString();
-    } finally {
-      loading = false;
+      // todo
     }
+    return false;
+  }
+
+  @action
+  Future<void> savePassword() async {
+    try {
+      await _secureStorage.savePassword(password);
+    } catch (e) {}
+  }
+
+  @action
+  Future<String> readPassword() async {
+    try {
+      password = await _secureStorage.readPassword();
+      print("readed password -> $password");
+      return password;
+    } catch (e) {
+      // todo
+    }
+    return '';
+  }
+
+  _UserStoreBase() {
+    autorun((_) async {
+      try {
+        readRemember();
+        if (rememberPassword) {
+          savePassword();
+        }
+      } catch (e) {}
+    });
   }
 }

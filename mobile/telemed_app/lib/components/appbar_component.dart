@@ -22,13 +22,11 @@ class _AppBarMedState extends State<AppBarMed> {
       centerTitle: true,
       title: Text(widget.title),
       actions: [
-        Switch(
-          value: themeProvider.isDark,
-          onChanged: (value) {
-            setState(() {
-              themeProvider.toggleTheme();
-            });
-          },
+        IconButton(
+          onPressed: themeProvider.toggleTheme,
+          icon: Icon(
+              themeProvider.isDark ? Icons.lightbulb_outline : Icons.lightbulb,
+              color: Colors.white),
         ),
       ],
     );
