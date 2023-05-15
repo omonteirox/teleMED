@@ -25,7 +25,8 @@ import com.bezkoder.spring.security.modules.login.services.DoctorService;
 import com.bezkoder.spring.security.modules.login.services.UserService;
 import com.bezkoder.spring.security.modules.login.models.Doctor;
 import com.bezkoder.spring.security.modules.login.models.User;
-import com.bezkoder.spring.security.modules.login.payload.request.DoctorDTO;
+import com.bezkoder.spring.security.modules.login.payload.DoctorDTO;
+
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)

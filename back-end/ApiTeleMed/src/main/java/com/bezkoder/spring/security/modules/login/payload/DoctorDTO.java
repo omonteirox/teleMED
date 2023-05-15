@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.modules.login.payload.request;
+package com.bezkoder.spring.security.modules.login.payload;
 
 import javax.validation.constraints.NotBlank;
 
