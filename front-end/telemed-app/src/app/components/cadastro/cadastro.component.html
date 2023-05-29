@@ -1,61 +1,38 @@
-<mat-drawer-container class="example-container">
-    <mat-drawer class="abalogin" opened>
-        <h1 id="login">Cadastre-se</h1>
-        <h5>Cadastre-se com a conta Google</h5>
-        <a id="loginGoogle" mat-raised-button href="https://www.google.com/" target="_blank">Cadastre-se com o Google</a>
-        <mat-divider id="divider"></mat-divider>
+<div class="page page-center">
+    <div class="container container-tight py-4" style="width: 500px;">
+      <div class="text-center mb-4">
+        <a href="/" class="navbar-brand navbar-brand-autodark"><img src="../assets/img/logo.png" height="150" alt="TELEMED"></a>
+      </div>
+      <form class="card card-md" action="./" method="get" autocomplete="off" novalidate>
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Criar nova conta</h2>
+          <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" placeholder="Seu nome">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">E-mail</label>
+            <input type="email" class="form-control" placeholder="Seu e-mail">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Senha</label>
+            <div class="input-group input-group-flat">
+              <input type="password" class="form-control"  placeholder="Senha"  autocomplete="off">
+              <span class="input-group-text">
+                <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+                </a>
+              </span>
+            </div>
+          </div>
 
-        <form class="form">
-            <div class="form-group">
-                <input type="text" id="username" name="username" placeholder="Nome completo" required class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="text" id="username" name="username" placeholder="Email" required class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="password" id="password" name="password" placeholder="Senha" required class="form-control"> 
-            </div>
-            <div class="form-group">
-                <input type="password" id="password" name="password" placeholder="Repita a senha" required class="form-control"> 
-            </div>
-            <div class="form-group">
-                <input type="text" id="telefone" name="username" placeholder="Phone:(XX)9XXXX-XXXX" required class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="text" id="username" name="username" placeholder="Rua" required class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="text" id="username" name="username" placeholder="Bairro" required class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="text" id="username" name="username" placeholder="Cidade" required class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="text" id="username" name="username" placeholder="Estado" required class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="text" id="username" name="username" placeholder="CEP" required class="form-control">
-            </div>
-            
-            <div class="form-group">
-                <input type="text" id="username" name="username" placeholder="Complemento" required class="form-control">
-            </div>
-            
-
-
-
-
-            <mat-checkbox class="chkBox">Lembrar senha</mat-checkbox> <br>
-            <a id="btnEntrar" mat-raised-button routerLink="login" target="_blank">Entrar</a>
-        </form>
-
-       <!-- <h1 id="textSenha">Esqueci minha senha</h1>-->
-
-        <h1 id="textCadastro">Possui conta? <a style="font-weight: bold; text-decoration: none; color: #1F1F1F;" href="../login/login.component.html">Faça Login</a></h1>
-
-    </mat-drawer>
-    <mat-drawer-content class="login2">
-
-    </mat-drawer-content>
-
- 
+          <div class="form-footer">
+            <button type="submit" style="background: #4292F5; border-color: #4694f5;" class="btn btn-primary w-100">Entrar</button>
+          </div>
+        </div>
+      </form>
+      <div class="text-center text-muted mt-3">
+        Ja tem uma conta? <a href="/login" tabindex="-1">Entrar</a>
+      </div>
+    </div>
+  </div>
