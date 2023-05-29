@@ -14,6 +14,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { DashboardPacienteComponent } from './components/dashboard-paciente/dashboard-paciente.component';
+import { DashboardInterpreteComponent } from './components/dashboard-interprete/dashboard-interprete.component';
+import { DashboardMedicoComponent } from './components/dashboard-medico/dashboard-medico.component';
 
 
 
@@ -23,7 +26,10 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    CadastroComponent
+    CadastroComponent,
+    DashboardPacienteComponent,
+    DashboardInterpreteComponent,
+    DashboardMedicoComponent
 
   ],
   imports: [
