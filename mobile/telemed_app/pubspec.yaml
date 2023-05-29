@@ -33,7 +33,6 @@ dependencies:
   mobx: ^2.1.4
   flutter_mobx: ^2.0.6+5
   http: ^0.13.5
-  asuka: ^2.0.2
   google_sign_in: ^6.1.0
   flutter_secure_storage: ^8.0.0
   flutter:

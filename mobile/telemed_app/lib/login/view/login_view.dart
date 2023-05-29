@@ -62,6 +62,10 @@ class _LoginViewState extends State<LoginView> {
                   );
                 }),
               ),
+              TextButton(
+                onPressed: () {},
+                child: const Text("Esqueci minha senha"),
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 3),
                 child: Row(
@@ -103,10 +107,6 @@ class _LoginViewState extends State<LoginView> {
                     child: const Text("Cadastre-se"),
                   ),
                 ],
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text("Esqueci minha senha"),
               ),
               SignInButton(Buttons.Google,
                   text: "Entre com o Google", onPressed: () {})

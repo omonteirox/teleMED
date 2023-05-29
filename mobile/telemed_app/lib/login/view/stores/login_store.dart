@@ -1,16 +1,14 @@
-import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:telemed_app/login/controller/login_controller.dart';
 import 'package:telemed_app/utils/secure/secure.dart';
-import 'package:telemed_app/utils/animations/loading_dialog.dart';
 part 'login_store.g.dart';
 
 class LoginStore = _LoginStoreBase with _$LoginStore;
 
 abstract class _LoginStoreBase with Store {
   final secureStorage = SecureData();
-  final LoadingDialog dialog = LoadingDialogImpl();
+  // final LoadingDialog dialog = LoadingDialogImpl();
   final TextEditingController passwordController = TextEditingController();
   @observable
   String email = '';
@@ -105,16 +103,16 @@ abstract class _LoginStoreBase with Store {
   @action
   Future<void> loginWithEmail(
       String? email, String? password, bool rememberPassword) async {
-    dialog.show();
+    // dialog.show();
     await Future.delayed(const Duration(seconds: 1));
     try {
       await LoginController.loginWithEmail(email, password);
       await secureStorage.saveData(email, password, rememberPassword);
-      await dialog.hide();
+      // await dialog.hide();
     } catch (e) {
       setError(e.toString());
-      Asuka.showSnackBar(SnackBar(content: Text(error!)));
-      await dialog.hide();
+      // Asuka.showSnackBar(SnackBar(content: Text(error!)));
+      // await dialog.hide();
     }
   }
 

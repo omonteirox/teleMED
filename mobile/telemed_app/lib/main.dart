@@ -1,4 +1,3 @@
-import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:telemed_app/login/view/login_view.dart';
@@ -24,8 +23,8 @@ class _MyAppState extends State<MyApp> {
       child: Consumer<ThemeProvider>(
         builder: (context, theme, _) {
           return MaterialApp(
-            builder: Asuka.builder,
-            navigatorObservers: [Asuka.asukaHeroController],
+            // builder: Asuka.builder,
+            // navigatorObservers: [Asuka.asukaHeroController],
             title: 'TELEMED-APP',
             theme:
                 theme.isDark ? AppThemes().darkTheme : AppThemes().whiteTheme,

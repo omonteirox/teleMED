@@ -1,14 +1,12 @@
-import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:telemed_app/signup/controller/signup_controller.dart';
-import 'package:telemed_app/utils/animations/loading_dialog.dart';
 part 'sign_up_store.g.dart';
 
 class SignUpStore = _SignUpStoreBase with _$SignUpStore;
 
 abstract class _SignUpStoreBase with Store {
-  final LoadingDialog dialog = LoadingDialogImpl();
+  // final LoadingDialog dialog = LoadingDialogImpl();
 
   @observable
   String name = '';
@@ -50,18 +48,18 @@ abstract class _SignUpStoreBase with Store {
 
   @action
   Future<bool> signUp(String? name, String? email, String? password) async {
-    dialog.show();
+    // dialog.show();
     await Future.delayed(const Duration(seconds: 1));
     try {
       await SignUpController.signUp(email, password, name);
-      await dialog.hide();
+      // await dialog.hide();
       await Future.delayed(const Duration(milliseconds: 500));
-      Asuka.showSnackBar(
-          const SnackBar(content: Text("Usuário criado com êxito")));
+      // Asuka.showSnackBar(
+      //     const SnackBar(content: Text("Usuário criado com êxito")));
       return true;
     } catch (e) {
-      Asuka.showSnackBar(SnackBar(content: Text(e.toString())));
-      await dialog.hide();
+      // Asuka.showSnackBar(SnackBar(content: Text(e.toString())));
+      // await dialog.hide();
       return false;
     }
   }
