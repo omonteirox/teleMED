@@ -6,7 +6,10 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
+
+import org.springframework.lang.Nullable;
 
 @Entity
 @Table
@@ -28,6 +31,9 @@ public class User
   @NotBlank
   @Size(max = 120)
   private String name;
+
+  @Nullable
+  private String username;
 
   @NotBlank
   @Size(max = 50)
@@ -52,9 +58,10 @@ public class User
 		String name, String email, String password
   ) 
   {
-	this.name = name;
+	  this.name = name;
     this.email = email;
     this.password = password;
+    this.username = email;
   }
 
   public Long getId() {
@@ -71,6 +78,14 @@ public class User
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String email) {
+    this.username = email;
   }
 
 

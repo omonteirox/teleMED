@@ -12,6 +12,8 @@ import com.bezkoder.spring.security.modules.login.models.User;
 public interface UserRepository extends JpaRepository<User, UUID> 
 {
   Boolean existsByEmail(String email);
+  Optional<User> findByUsername(String username);
+  Boolean existsByUsername(String username);
   Optional<User> findById(long id);
   Optional<User> findByEmail(String email);
 }

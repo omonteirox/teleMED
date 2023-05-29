@@ -39,7 +39,15 @@ public class UserService
         return userRepository.existsByEmail(email);
     }
 
+    public Optional<User> findByUsername(String username) 
+    {
+        return userRepository.findByUsername(username);
+    }
 
+    public Boolean existsByUsername(String username)
+    {
+        return userRepository.existsByUsername(username);
+    }
 
     @Transactional
     public void delete(User UserModel) 
