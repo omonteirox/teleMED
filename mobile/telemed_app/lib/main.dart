@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
       child: Consumer<ThemeProvider>(
         builder: (context, theme, _) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             // builder: Asuka.builder,
             // navigatorObservers: [Asuka.asukaHeroController],
             title: 'TELEMED-APP',
