@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:telemed_app/components/appbar_component.dart';
 import 'package:telemed_app/login/view/stores/login_store.dart';
+import 'package:telemed_app/reset-password/view/reset_password_view.dart';
 import 'package:telemed_app/utils/routes/routes.dart';
 
 class LoginView extends StatefulWidget {
@@ -74,7 +74,14 @@ class _LoginViewState extends State<LoginView> {
               Padding(
                 padding: const EdgeInsets.only(right: 30),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ResetPasswordView(),
+                      ),
+                    );
+                  },
                   child: const Text("Esqueci minha senha"),
                 ),
               ),
