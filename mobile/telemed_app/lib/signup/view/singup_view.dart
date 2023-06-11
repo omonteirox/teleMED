@@ -17,13 +17,21 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarMed(title: "Realize seu Cadastro"),
+      appBar: AppBarMed(title: ""),
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
           child: Column(
             children: [
-              Image.asset("images/telemed-logo.png"),
+              Image.asset(
+                "images/logo-simples.png",
+                height: 150,
+                width: 150,
+              ),
+              const Text(
+                "Cadastre-se",
+                style: TextStyle(fontSize: 25),
+              ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextFormField(
@@ -97,7 +105,16 @@ class _SignUpViewState extends State<SignUpView> {
                       });
                     }
                   },
-                  child: const Text("Realizar Cadastro"),
+                  child: const Padding(
+                    padding: EdgeInsets.only(
+                      left: 40,
+                      right: 40,
+                    ),
+                    child: Text(
+                      "Realizar Cadastro",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
                 );
               })
             ],

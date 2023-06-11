@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:provider/provider.dart';
 import 'package:telemed_app/login/view/stores/login_store.dart';
 import 'package:telemed_app/reset-password/view/reset_password_view.dart';
 import 'package:telemed_app/utils/routes/routes.dart';
+
+import '../../theme_provider.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -18,13 +21,36 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
         body: SingleChildScrollView(
       child: Form(
         key: formKey,
         child: Column(children: [
           Padding(
-            padding: const EdgeInsets.all(40),
+            padding: const EdgeInsets.only(
+              top: 30,
+              right: 10,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: themeProvider.toggleTheme,
+                  icon: Icon(
+                    themeProvider.isDark
+                        ? Icons.lightbulb_outline
+                        : Icons.lightbulb,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 0,
+              bottom: 30,
+            ),
             child: Image.asset(
               "images/logo-simples.png",
               height: 120,
@@ -112,12 +138,12 @@ class _LoginViewState extends State<LoginView> {
                 return ElevatedButton(
                     style: ButtonStyle(),
                     onPressed: () async {
-                      if (formKey.currentState!.validate()) {
-                        loginStore.loginWithEmail(loginStore.email,
-                            loginStore.password, loginStore.rememberPassword);
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, AppRoutes.HOME, (route) => false);
-                      }
+                      //if (formKey.currentState!.validate()) {
+                      // loginStore.loginWithEmail(loginStore.email,
+                      //     loginStore.password, loginStore.rememberPassword);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, AppRoutes.MEDIC, (route) => false);
+                      // }
                     },
                     child: const Padding(
                       padding: EdgeInsets.only(
@@ -148,14 +174,12 @@ class _LoginViewState extends State<LoginView> {
                   Text(
                     "Não possui uma conta?",
                     style: TextStyle(
-                      color: Colors.black,
                       fontSize: 15,
                     ),
                   ),
                   Text(
                     "Cadastre-se aqui",
                     style: TextStyle(
-                      color: Colors.black,
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
