@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 import org.springframework.lang.Nullable;
@@ -49,6 +48,11 @@ public class User
   @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
 
+  
+  @OneToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "user_imagen", joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "img_id"))
+  private Set<Images> imagens = new HashSet<>();
+
   public User() 
   {
   }
@@ -62,6 +66,31 @@ public class User
     this.email = email;
     this.password = password;
     this.username = email;
+  }
+
+  public User
+  (
+		String name, String email, String password, Set<Images> imagens
+  ) 
+  {
+	  this.name = name;
+    this.email = email;
+    this.password = password;
+    this.imagens = imagens;
+    this.username = email;
+  }
+
+  public User
+  (
+    Long id, String name, String email, String password, Set<Role> roles
+  ) 
+  {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.username = email;
+    this.roles = roles;
   }
 
   public Long getId() {
@@ -112,4 +141,14 @@ public class User
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
   }
+
+  public Set<Images> getImagens() {
+      return imagens;
+  }
+
+  public void setImagens(Set<Images> imagens) {
+    this.imagens = imagens;
+  }
+
+
 }

@@ -86,7 +86,7 @@ class AuthControllerTest {
         strRoles.add("ROLE_USER");
 
         Set<Role> roles = new HashSet<>();
-        Role userRole = new Role(ERole.ROLE_USER);
+        Role userRole = new Role(ERole.ROLE_ROOT);
         roles.add(userRole);
 
         when(userService.existsByEmail("test1@example.com")).thenReturn( true );

@@ -73,7 +73,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         User user = new User();
         Set<Role> roles = new HashSet<>();
         
-        Role userRole = new Role(ERole.ROLE_USER);
+        Role userRole = new Role(ERole.ROLE_PATIENT);
 
         roles.add(userRole);   
 

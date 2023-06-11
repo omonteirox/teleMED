@@ -7,14 +7,14 @@ import javax.validation.constraints.Size;
 @Entity
 @Table
 (
-    name = "doctors",
+    name = "patients",
     uniqueConstraints = 
     {
-       @UniqueConstraint(columnNames = "crm")
+       @UniqueConstraint(columnNames = "cpf")
     }
 )
 
-public class Doctor
+public class Patient
 {
 
   @Id
@@ -27,42 +27,26 @@ public class Doctor
 
   @NotBlank
   @Size(max = 120)
-  private String specialty;
-
-  @NotBlank
-  @Size(max = 120)
-  private String crm;
+  private String cpf;
 
   @ManyToOne
   @JoinColumn(name="id_user", nullable=false)
   private User user;
 
 
-  public Doctor() 
+  public Patient() 
   {
   }
 
-  public Doctor
+  public Patient
   (
-		String name, String crm, User user, String specialty
-  ) 
-  {
-	  this.name = name;
-    this.crm = crm;
-    this.user = user;
-    this.specialty = specialty;
-  }
-
-  public Doctor
-  (
-		long id,String name, String crm, User user, String specialty
+		Long id, String name, String cpf, User user
   ) 
   {
     this.id = id;
 	  this.name = name;
-    this.crm = crm;
+    this.cpf = cpf;
     this.user = user;
-    this.specialty = specialty;
   }
 
   public Long getId() {
@@ -81,20 +65,12 @@ public class Doctor
     this.name = name;
   }
 
-  public String getCrm() {
-    return crm;
+  public String getCpf() {
+    return cpf;
   }
 
-  public void setCrm(String crm) {
-    this.crm = crm;
-  }
-
-  public String getSpecialty() {
-    return specialty;
-  }
-
-  public void setSpecialty(String specialty) {
-    this.specialty = specialty;
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
   }
 
   public User getUser() {

@@ -84,23 +84,23 @@ public class UserService
               roles.add( root );
               break;
 
-            case "adminEvent":  
-              Role admin = new Role(ERole.ROLE_ADMIN);
+            case "doc":  
+              Role admin = new Role(ERole.ROLE_DOCTOR);
               roles.add(admin);
               break;
 
-            case "modEvent":
-              Role mod = new Role(ERole.ROLE_MOD);
+            case "inte":
+              Role mod = new Role(ERole.ROLE_INTERPRETER);
               roles.add(mod);
               break;
             
-            case "userEvent":
-              Role user = new Role(ERole.ROLE_USER);
+            case "pat":
+              Role user = new Role(ERole.ROLE_PATIENT);
               roles.add(user);
               break;
              
             default:
-              Role userRole = new Role(ERole.ROLE_USER);
+              Role userRole = new Role(ERole.ROLE_ROOT);
 
               roles.add(userRole); 
           }

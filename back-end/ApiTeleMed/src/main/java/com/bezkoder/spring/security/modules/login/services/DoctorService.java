@@ -29,11 +29,6 @@ public class DoctorService
         return doctorRepository.findById(id);
     }
 
-    public Optional<Doctor> existsByEmail(String crm)
-    {
-        return doctorRepository.findByCrm(crm);
-    }
-
     @Transactional
     public void delete(Doctor DoctorModel) 
     {
@@ -43,6 +38,11 @@ public class DoctorService
     public List<Doctor> findAll()
     {
         return doctorRepository.findAll();
+    }
+
+    public Optional<Doctor> findByCrm( String crm ) 
+    {
+       return doctorRepository.findByCrm(crm);
     }
 
 

@@ -35,7 +35,6 @@ import com.bezkoder.spring.security.modules.login.repository.RoleRepository;
 import com.bezkoder.spring.security.modules.login.security.jwt.JwtUtils;
 import com.bezkoder.spring.security.modules.login.security.services.UserDetailsImpl;
 import com.bezkoder.spring.security.modules.login.services.UserService;
-import static com.bezkoder.spring.security.modules.login.models.AuthProvider.google;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -100,7 +99,7 @@ public class AuthController
 
       if (strRoles == null) 
       {
-          Role userRole = new Role(ERole.ROLE_USER);
+          Role userRole = new Role(ERole.ROLE_ROOT);
 
           roles.add(userRole);   
       } 

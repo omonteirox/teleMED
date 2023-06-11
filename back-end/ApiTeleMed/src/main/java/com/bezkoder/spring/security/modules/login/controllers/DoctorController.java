@@ -1,7 +1,9 @@
 package com.bezkoder.spring.security.modules.login.controllers;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
 
 import javax.validation.Valid;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -83,24 +86,70 @@ public class DoctorController
     public ResponseEntity<Object> save(@Valid @RequestBody DoctorDTO doctorDTO)
     {
       
+        String[] specialt = {"Clínico Geral", "Pediatria", "Ginecologia", "Ortopedia", "Dermatologia"};
+        
         Optional<User> user = userService.findById( doctorDTO.getUser().getId() );
+        Optional<Doctor> doctor = doctorService.findByCrm( doctorDTO.getCrm() );
 
         if (!user.isPresent()) 
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("user not found.");
         }
-       
+
+        if( !Arrays.asList( specialt ).contains( doctorDTO.getSpecialty() )  )
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body("specialt not found. Especialidades validas [ Clínico Geral,Pediatria,Ginecologia,Ortopedia e Dermatologia ]");
+        }
+
+        if( doctor.isPresent() )
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("crm exists.");
+        }
+
         var doctorEntities = new Doctor();
         BeanUtils.copyProperties( doctorDTO, doctorEntities);  
   
+        User userEntities = new User( user.get().getId(), user.get().getName(), user.get().getEmail(), user.get().getPassword(), user.get().getRoles() );
+  
+        doctorEntities.setUser( userEntities );
+
         doctorService.save( doctorEntities );
-        
-        User userEntities = new User( user.get().getName(), user.get().getEmail(), user.get().getPassword());
   
-        doctorDTO.setUser( userEntities );
-  
-        return ResponseEntity.status(HttpStatus.CREATED).body( doctorDTO );
+        return ResponseEntity.status(HttpStatus.CREATED).body( doctorEntities );
     }   
+
+    @PutMapping("{id}")
+    @PreAuthorize("hasRole('ROOT') OR hasRole('DOCTOR')")
+    public ResponseEntity<Object> update(@PathVariable(value = "crm") String crm, @RequestBody @Valid DoctorDTO doctorDTO)
+    {
+        String[] specialt = {"Clínico Geral", "Pediatria", "Ginecologia", "Ortopedia", "Dermatologia"};
+        
+        Optional<Doctor> doctorObj = doctorService.findByCrm( crm );
+        Optional<Doctor> doctor = doctorService.findByCrm( doctorDTO.getCrm() );
+
+        if ( !doctorObj.isPresent()) 
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("doctor not found.");
+        }
+
+        if( !Arrays.asList( specialt ).contains( doctorDTO.getSpecialty() )  )
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body("specialt not found. Especialidades validas [ Clínico Geral,Pediatria,Ginecologia,Ortopedia e Dermatologia ]");
+        }
+
+        if( doctor.isPresent() )
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("crm exists.");
+        }
+
+        var doctorEntities = new Doctor();
+        BeanUtils.copyProperties( doctorDTO, doctorEntities);  
+        doctorEntities.setId( doctor.get().getId() );
+    
+        return ResponseEntity.status(HttpStatus.OK).body( doctorService.save( doctorEntities )  );
+    }
   
 
     

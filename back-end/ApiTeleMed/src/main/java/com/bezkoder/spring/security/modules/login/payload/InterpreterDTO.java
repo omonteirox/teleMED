@@ -4,16 +4,13 @@ import javax.validation.constraints.NotBlank;
 
 import com.bezkoder.spring.security.modules.login.models.User;
 
-public class DoctorDTO 
+public class InterpreterDTO 
 {
   @NotBlank
   private String name;
 
   @NotBlank
-  private String specialty;
-
-  @NotBlank
-  private String crm;
+  private String cpf;
 
   private User User;
 
@@ -25,22 +22,14 @@ public class DoctorDTO
     this.name = name;
   }
 
-  public String getCrm() {
-    return crm;
+  public String getcpf() {
+    return cpf;
   }
 
-  public void setCrm(String crm) {
-    this.crm = crm;
+  public void setcpf(String cpf) {
+    this.cpf = cpf;
   }
-
-  public String getSpecialty() {
-    return specialty;
-  }
-
-  public void setSpecialty(String specialty) {
-    this.specialty = specialty;
-  }
-
+  
   public User getUser() {
     return User;
   }
