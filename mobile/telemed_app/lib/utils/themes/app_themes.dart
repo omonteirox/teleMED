@@ -16,7 +16,7 @@ class AppThemes {
         builders: {TargetPlatform.android: CustomPageTransitionBuilder()}),
     colorScheme: const ColorScheme.light(
       background: Color.fromRGBO(244, 244, 244, 1),
-      primary: Colors.black,
+      primary: Color(0xff4292F5),
     ),
     fontFamily: 'Montserrat',
   );

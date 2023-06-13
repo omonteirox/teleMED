@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:telemed_app/dashboard/view/dashboard_medico_view.dart';
 import 'package:telemed_app/login/view/login_view.dart';
 import 'package:telemed_app/signup/view/singup_view.dart';
 import 'package:telemed_app/utils/routes/routes.dart';
@@ -23,6 +24,7 @@ class _MyAppState extends State<MyApp> {
       child: Consumer<ThemeProvider>(
         builder: (context, theme, _) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             // builder: Asuka.builder,
             // navigatorObservers: [Asuka.asukaHeroController],
             title: 'TELEMED-APP',
@@ -30,8 +32,9 @@ class _MyAppState extends State<MyApp> {
                 theme.isDark ? AppThemes().darkTheme : AppThemes().whiteTheme,
             routes: {
               AppRoutes.HOME: (BuildContext context) => const Placeholder(),
-              AppRoutes.LOGIN: (BuildContext context) => LoginView(),
+              AppRoutes.LOGIN: (BuildContext context) => const LoginView(),
               AppRoutes.SIGNON: (BuildContext context) => const SignUpView(),
+              AppRoutes.MEDIC: (BuildContext context) => const DashboardMedico()
             },
             initialRoute: '/',
           );
