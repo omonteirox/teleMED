@@ -1,6 +1,6 @@
 class Consulta {
-  final String nome;
-  final String horario;
+  final String name;
+  final String time;
 
-  Consulta({required this.nome, required this.horario});
+  Consulta({required this.name, required this.time});
 }

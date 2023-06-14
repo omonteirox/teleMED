@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'stores/consulta_store.dart';
-import 'package:mobx/mobx.dart';
 import '../model/Consulta.dart';
 
 class DashboardMedico extends StatefulWidget {
@@ -69,10 +68,65 @@ class _DashboardMedicoState extends State<DashboardMedico> {
                               width: 250,
                               child: ListTile(
                                 leading: const Icon(Icons.event),
-                                title: Text(consulta.nome),
-                                subtitle: Text('Horário: ${consulta.horario}'),
+                                title: Text(consulta.name),
+                                subtitle: Text('Horário: ${consulta.time}'),
                                 onTap: () {
                                   // Ação ao tocar em uma consulta
+                                  // abrir uma tela com os detalhes da consulta
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (BuildContext ctx) {
+                                        return Container(
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Text("PACIENTE"),
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        // roteamento para o perfil do paciente
+                                                      },
+                                                      child:
+                                                          Text("Ver perfil")),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text("MÉDICO"),
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        // roteamento para o perfil do médico
+                                                      },
+                                                      child:
+                                                          Text("Ver perfil")),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text("DATA"),
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        // roteamento para o calendário
+                                                      },
+                                                      child: Text(
+                                                          "Ver calendário")),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text("DESCRIÇÃO"),
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        // roteamento para o webRCT
+                                                      },
+                                                      child: Text(
+                                                          "Entrar na consulta"))
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      });
                                 },
                               ),
                             ),

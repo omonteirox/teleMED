@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:provider/provider.dart';
 import 'package:telemed_app/login/view/stores/login_store.dart';
-import 'package:telemed_app/reset-password/view/reset_password_view.dart';
 import 'package:telemed_app/utils/routes/routes.dart';
 
 import '../../theme_provider.dart';
@@ -94,25 +92,6 @@ class _LoginViewState extends State<LoginView> {
               );
             }),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 30),
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ResetPasswordView(),
-                      ),
-                    );
-                  },
-                  child: const Text("Esqueci minha senha"),
-                ),
-              ),
-            ],
-          ),
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Row(
@@ -158,19 +137,14 @@ class _LoginViewState extends State<LoginView> {
               }),
             ],
           ),
-          const SizedBox(
-            height: 30,
-          ),
-          SignInButton(Buttons.Google,
-              text: "Entre com o Google", onPressed: () {}),
           Padding(
-            padding: const EdgeInsets.only(top: 40),
+            padding: const EdgeInsets.only(top: 10),
             child: TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, AppRoutes.SIGNON);
               },
-              child: Column(
-                children: const [
+              child: const Column(
+                children: [
                   Text(
                     "Não possui uma conta?",
                     style: TextStyle(

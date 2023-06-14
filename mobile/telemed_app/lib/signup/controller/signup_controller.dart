@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:telemed_app/signup/model/signup_model.dart';
 
 class SignUpController {
-  static const _baseUrl = 'http://192.168.0.101:8080/api';
+  static const _baseUrl = 'http://192.168.0.100:8080/api';
   static Future<SignUpModel> signUp(
       String? email, String? password, String? name) async {
     if (email == null && name == null && password == null) {

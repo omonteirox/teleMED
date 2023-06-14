@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class LoginController {
-  static const _baseUrl = 'http://192.168.0.101:8080/api';
+  static const _baseUrl = 'http://192.168.0.100:8080/api';
   static Future<void> loginWithEmail(String? email, String? password) async {
     if (email == null && password == null) {
       throw Exception("Null params exception");
