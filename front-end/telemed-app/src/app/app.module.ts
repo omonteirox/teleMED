@@ -17,19 +17,21 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { DashboardPacienteComponent } from './components/dashboard-paciente/dashboard-paciente.component';
 import { DashboardInterpreteComponent } from './components/dashboard-interprete/dashboard-interprete.component';
 import { DashboardMedicoComponent } from './components/dashboard-medico/dashboard-medico.component';
-
-
-
+import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    CadastroComponent,
     DashboardPacienteComponent,
     DashboardInterpreteComponent,
-    DashboardMedicoComponent
+    DashboardMedicoComponent,
+    HeaderComponent,
+    DashboardComponent,
 
   ],
   imports: [
@@ -42,7 +44,10 @@ import { DashboardMedicoComponent } from './components/dashboard-medico/dashboar
     MatButtonModule,
     MatDividerModule,
     MatFormFieldModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

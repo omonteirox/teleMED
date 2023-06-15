@@ -6,14 +6,18 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { DashboardInterpreteComponent } from './components/dashboard-interprete/dashboard-interprete.component';
 import { DashboardPacienteComponent } from './components/dashboard-paciente/dashboard-paciente.component';
 import { DashboardMedicoComponent } from './components/dashboard-medico/dashboard-medico.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AuthGuard } from './services/auth.guard';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CadastroComponent },
-  { path: 'DashboardInterprete', component: DashboardInterpreteComponent },
-  { path: 'DashboardPaciente', component: DashboardPacienteComponent },
-  { path: 'DashboardMedico', component: DashboardMedicoComponent },
+  { path: 'dashboardInterprete', component: DashboardInterpreteComponent },
+  { path: 'dashboardPaciente', component: DashboardPacienteComponent },
+  { path: 'dashboardMedico', component: DashboardMedicoComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

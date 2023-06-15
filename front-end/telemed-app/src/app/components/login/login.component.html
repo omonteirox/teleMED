@@ -1,66 +1,84 @@
 <div class="page page-center">
-    <div class="container container-normal py-4">
-      <div class="row align-items-center g-4">
-        <div class="col-lg">
-          <div class="container-tight">
-            <div class="text-center mb-4">
-              <a href="." class="navbar-brand navbar-brand-autodark"><img src="./static/logo.svg" height="36" alt=""></a>
-            </div>
-            <div class="card card-md">
-              <div class="card-body">
-                <h2 class="h2 text-center mb-4">Faça login em sua conta</h2>
-                <form action="./" method="get" autocomplete="off" novalidate>
-                  <div class="mb-3">
-                    <label class="form-label">E-mail</label>
-                    <input type="email" class="form-control" placeholder="seu@email.com" autocomplete="off">
-                  </div>
-                  <div class="mb-2">
-                    <label class="form-label">
-                      Senha
-                    </label>
-                    <div class="input-group input-group-flat">
-                      <input type="password" class="form-control"  placeholder="Sua senha"  autocomplete="off">
-                      <span class="input-group-text">
-                        <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
-                        </a>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="mb-2">
-                    <label class="form-check">
-                      <input type="checkbox" class="form-check-input"/>
-                      <span class="form-check-label">Lembrar senha</span>
-                    </label>
-                  </div>
-                  <div class="form-footer">
-                    <button type="submit" style="background: #4292F5; border-color: #4694f5;" class="btn btn-primary w-100">Entrar</button>
-                  </div>
-                </form>
-              </div>
-              <div class="hr-text">ou</div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col"><a href="#" class="btn w-100" >
-                      <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-google" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M17.788 5.108a9 9 0 1 0 3.212 6.892h-8"></path>
-                     </svg>
-                      Entrar com o Google
-                    </a></div>
-                  
+  <div class="container container-normal py-4">
+    <div class="row align-items-center g-4">
+      <div class="col-lg">
+        <div class="container-tight">
+          <div class="text-center mb-4">
+            <a href="." class="navbar-brand navbar-brand-autodark">
+              <img src="./static/logo.svg" height="36" alt="">
+            </a>
+          </div>
+          <div class="card card-md">
+            <div class="card-body">
+              <h2 class="h2 text-center mb-4">Faça login em sua conta</h2>
+              <form action="./" method="get" autocomplete="off" novalidate>
+                <div class="mb-3">
+                  <label class="form-label">E-mail</label>
+                  <input type="email" class="form-control" placeholder="seu@email.com"
+                    autocomplete="off" [(ngModel)]="email" name="email">
                 </div>
-              </div>
+                <div class="mb-2">
+                  <label class="form-label">
+                    Senha
+                  </label>
+                  <div class="input-group input-group-flat">
+                    <input type="password" class="form-control" placeholder="Sua senha"
+                      autocomplete="off" [(ngModel)]="password" name="password">
+                    <span class="input-group-text">
+                      <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                          viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                          <path
+                            d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
+                        </svg>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+                <!-- <div class="mb-2">
+                  <label class="form-check">
+                    <input type="checkbox" class="form-check-input" [(ngModel)]="rememberMe" name="rememberMe">
+                    <span class="form-check-label">Lembrar senha</span>
+                  </label>
+                </div> -->
+                <div class="form-footer">
+                  <button type="submit" style="background: #4292F5; border-color: #4694f5;"
+                    class="btn btn-primary w-100" (click)="onSubmit()">Entrar</button>
+                </div>
+              </form>
             </div>
-            <div class="text-center text-muted mt-3">
-                Ainda não tem conta? <a routerLink="/cadastro" tabindex="-1">Cadastre-se aqui</a>
+            <div class="hr-text">ou</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <a href="#" class="btn w-100">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-google"
+                      width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M17.788 5.108a9 9 0 1 0 3.212 6.892h-8"></path>
+                    </svg>
+                    Entrar com o Google
+                  </a>
+                </div>
+
+              </div>
             </div>
           </div>
+          <div class="text-center text-muted mt-3">
+            Ainda não tem conta? <a routerLink="/cadastro" tabindex="-1">Cadastre-se aqui</a>
+          </div>
         </div>
-        <div class="col-lg d-none d-lg-block">
-          <img src="../assets/img/bg.svg" height="300" class="d-block mx-auto" alt="">
-        </div>
+      </div>
+      <div class="col-lg d-none d-lg-block">
+        <img src="../assets/img/bg.svg" height="300" class="d-block mx-auto" alt="">
       </div>
     </div>
   </div>
+</div>
