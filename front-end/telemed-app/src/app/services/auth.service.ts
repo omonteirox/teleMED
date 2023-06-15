@@ -34,6 +34,12 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
+  register(email: string, name: string, password: string, roles: string[]): Observable<any> {
+    const body = { email, name, password, roles };
+    return this.http.post<any>(`${this.apiUrl}/api/auth/signup`, body);
+  }
+  
+
   private checkAuthentication(): void {
     // Verifica se o usuário está autenticado ao carregar o serviço
     const isLoggedIn = localStorage.getItem('isLoggedIn');

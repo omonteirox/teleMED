@@ -65,6 +65,10 @@
     </header>
     <div class="container-xl">
 
+        <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+          </div>
+          
         <div class="container container-normal py-4">
             <div class="row align-items-center g-4">
 

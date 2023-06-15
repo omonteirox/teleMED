@@ -1,1 +1,255 @@
-<button (click)="logout()">Sair</button>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <app-header *ngIf="shouldShowHeader()"></app-header>
+        </div>
+        <div class="col-md-10">
+            <div class="page">
+                <div class="page-wrapper">
+
+                    <!-- Page body -->
+                    <div class="page-body">
+
+                        <!-- =======================CARS======================= -->
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="row row-cards row-deck">
+                                    <div class="col-sm-6 col-lg-6">
+                                        <div class="card card-sm">
+                                            <div class="card-status-top bg-danger"></div>
+                                            <div class="card-body">
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto">
+                                                        <span class="bg-danger text-white avatar">
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                class="icon icon-tabler icon-tabler-plus" width="24"
+                                                                height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                                                </path>
+                                                                <path d="M12 5l0 14"></path>
+                                                                <path d="M5 12l14 0"></path>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="font-weight-medium">
+                                                            Nova
+                                                        </div>
+                                                        <div class="text-muted">
+                                                            Consulta
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 col-lg-6">
+                                        <div class="card card-sm">
+                                            <div class="card-status-top bg-azure"></div>
+                                            <div class="card-body">
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto">
+                                                        <span class="bg-blue text-white avatar">
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                class="icon icon-tabler icon-tabler-notes" width="24"
+                                                                height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                                                </path>
+                                                                <path
+                                                                    d="M5 3m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z">
+                                                                </path>
+                                                                <path d="M9 7l6 0"></path>
+                                                                <path d="M9 11l6 0"></path>
+                                                                <path d="M9 15l4 0"></path>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="font-weight-medium">
+                                                            Minhas
+                                                        </div>
+                                                        <div class="text-muted">
+                                                            Consulta
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="col-md-6 col-lg-12">
+                                    <div class="card">
+                                        <div class="card-stamp">
+                                            <div class="card-stamp-icon bg-azure">
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path
+                                                        d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6">
+                                                    </path>
+                                                    <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h3 class="text-muted">Você não possui consultas</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- =======================CARS======================= -->
+
+                        <br>
+                        <br>
+
+                        <!-- =======================TABELAS======================= -->
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Exames Pendentes</h3>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-vcenter table-hover table-sm card-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Médico</th>
+                                                    <th>Nome Exame</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Paula</td>
+                                                    <td>
+                                                        Raio x
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Médicos</h3>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-vcenter table-hover table-sm card-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nome</th>
+                                                    <th>Especialidade</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Jorge</td>
+                                                    <td>
+                                                        Psicóloga
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- =======================TABELAS======================= -->
+
+                        <br>
+
+                        <div class="row g-2 align-items-center">
+                            <div class="col">
+                                <h2 class="page-title">
+                                    Atalhos
+                                </h2>
+                            </div>
+                        </div>
+                        <br>
+
+                        <!-- =======================ATALHOS======================= -->
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="row row-cards row-deck">
+
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="card">
+                                            <div class="ribbon bg-azure">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-clipboard-heart" width="24"
+                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path
+                                                        d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
+                                                    </path>
+                                                    <path
+                                                        d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z">
+                                                    </path>
+                                                    <path
+                                                        d="M11.993 16.75l2.747 -2.815a1.9 1.9 0 0 0 0 -2.632a1.775 1.775 0 0 0 -2.56 0l-.183 .188l-.183 -.189a1.775 1.775 0 0 0 -2.56 0a1.899 1.899 0 0 0 0 2.632l2.738 2.825z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <div class="card-body">
+                                                <h3 class="card-title">Meus Atestados</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="card">
+                                            <div class="ribbon bg-azure">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-vaccine" width="24" height="24"
+                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M17 3l4 4"></path>
+                                                    <path d="M19 5l-4.5 4.5"></path>
+                                                    <path d="M11.5 6.5l6 6"></path>
+                                                    <path d="M16.5 11.5l-6.5 6.5h-4v-4l6.5 -6.5"></path>
+                                                    <path d="M7.5 12.5l1.5 1.5"></path>
+                                                    <path d="M10.5 9.5l1.5 1.5"></path>
+                                                    <path d="M3 21l3 -3"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="card-body">
+                                                <h3 class="card-title">Minhas Prescrição</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- =======================ATALHOS======================= -->
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

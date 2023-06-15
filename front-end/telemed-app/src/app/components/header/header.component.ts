@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
+import { AuthService } from '../../services/auth.service';
+;
 
 @Component({
   selector: 'app-header',
@@ -9,18 +11,15 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false; // Variável para controlar o estado de autenticação
 
-  constructor(private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     // Lógica para verificar o estado de autenticação (exemplo)
     this.isLoggedIn = this.checkIfLoggedIn();
   }
 
-  logout() {
-    // Lógica para realizar o logout (exemplo)
-    // Aqui você pode fazer chamadas apropriadas ao serviço de autenticação para realizar o logout
-    // Depois de fazer o logout, redirecione para a tela de login
-    this.router.navigate(['']);
+  logout(): void {
+    this.authService.logout(); // Chama o método de logout do serviço AuthService
   }
 
   private checkIfLoggedIn(): boolean {

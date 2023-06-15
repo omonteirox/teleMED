@@ -21,6 +21,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AvisoComponent } from './components/aviso/aviso.component';
+import { ConsultasComponent } from './components/consultas/consultas.component';
+import { ChamadaComponent } from './components/chamada/chamada.component';
+import { AtestadosComponent } from './components/atestados/atestados.component';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +37,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardMedicoComponent,
     HeaderComponent,
     DashboardComponent,
+    CadastroComponent,
+    AvisoComponent,
+    ConsultasComponent,
+    ChamadaComponent,
+    AtestadosComponent
 
   ],
   imports: [
