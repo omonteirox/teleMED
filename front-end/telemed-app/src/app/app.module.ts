@@ -25,6 +25,7 @@ import { AvisoComponent } from './components/aviso/aviso.component';
 import { ConsultasComponent } from './components/consultas/consultas.component';
 import { ChamadaComponent } from './components/chamada/chamada.component';
 import { AtestadosComponent } from './components/atestados/atestados.component';
+import { InfoconsultaComponent } from './components/infoconsulta/infoconsulta.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AtestadosComponent } from './components/atestados/atestados.component';
     AvisoComponent,
     ConsultasComponent,
     ChamadaComponent,
-    AtestadosComponent
+    AtestadosComponent,
+    InfoconsultaComponent
 
   ],
   imports: [

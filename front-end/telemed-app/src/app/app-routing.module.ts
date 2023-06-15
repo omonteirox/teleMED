@@ -11,6 +11,7 @@ import { AtestadosComponent } from './components/atestados/atestados.component';
 import { AvisoComponent } from './components/aviso/aviso.component';
 import { ChamadaComponent } from './components/chamada/chamada.component';
 import { ConsultasComponent } from './components/consultas/consultas.component';
+import { InfoconsultaComponent } from './components/infoconsulta/infoconsulta.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'info',
+    component: InfoconsultaComponent,
     canActivate: [AuthGuard],
   },
   {

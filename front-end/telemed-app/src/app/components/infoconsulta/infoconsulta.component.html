@@ -22,7 +22,7 @@
                                     </div>
                                     <div class="col">
                                         <h2 class="page-title">
-                                            AO VIVO
+                                            CONSULTA GENÊRICA XYZ
                                         </h2>
                                         <div class="text-muted">
                                             <ul class="list-inline list-inline-dots mb-0">
@@ -37,36 +37,33 @@
 
                         <hr>
 
-                        <div class="col-lg-12">
+                        <div class="col-lg-4">
                             <div class="card">
-                                <div class="empty">
-
-                                    <div style="display: flex; flex-direction: column; align-items: center;">
-                                        <video #localVideo autoplay></video>
-                                        <!-- <video #remoteVideo autoplay></video> -->
-                                    </div>
-
-                                    <div class="empty-action">
-                                        <a href="chamada" class="btn btn-primary" (click)="endCall()">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-video-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M3 3l18 18"></path>
-                                                <path d="M15 11v-1l4.553 -2.276a1 1 0 0 1 1.447 .894v6.764a1 1 0 0 1 -.675 .946"></path>
-                                                <path d="M10 6h3a2 2 0 0 1 2 2v3m0 4v1a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2h1"></path>
-                                             </svg>
-                                            Encerrar Chamada
-                                        </a>
-                                    </div>
+                              <div class="empty">
+                                <div class="empty-img"><img src="../../../assets/img/video.svg" height="128" alt="">
                                 </div>
+                                <p class="empty-title">Consulta por vídeo</p>
+                                <p class="empty-subtitle text-muted">
+                                  Clique no botão abaixo para acessar a consulta
+                                </p>
+                                <div class="empty-action">
+                                  <a href="chamada" class="btn btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-zoom" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M17.011 9.385v5.128l3.989 3.487v-12z"></path>
+                                        <path d="M3.887 6h10.08c1.468 0 3.033 1.203 3.033 2.803v8.196a.991 .991 0 0 1 -.975 1h-10.373c-1.667 0 -2.652 -1.5 -2.652 -3l.01 -8a.882 .882 0 0 1 .208 -.71a.841 .841 0 0 1 .67 -.287z"></path>
+                                     </svg>
+                                   Entrar na consulta
+                                  </a>
+                                </div>
+                              </div>
                             </div>
-                        </div>
+                          </div>
 
-                        <!-- <button (click)="startCall()" [disabled]="callStarted">Iniciar Chamada</button>
-                          <button (click)="endCall()" [disabled]="!callStarted">Encerrar Chamada</button> -->
 
 
                     </div>
-
+                    <!-- Page body -->
                 </div>
             </div>
         </div>

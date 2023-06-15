@@ -3,16 +3,15 @@ import { AuthService } from '../../services/auth.service';
 
 
 @Component({
-  selector: 'app-atestados',
-  templateUrl: './atestados.component.html',
-  styleUrls: ['./atestados.component.css']
+  selector: 'app-infoconsulta',
+  templateUrl: './infoconsulta.component.html',
+  styleUrls: ['./infoconsulta.component.css']
 })
-export class AtestadosComponent {
-
+export class InfoconsultaComponent {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {}
-  
+
   shouldShowHeader(): boolean {
     // Lógica para determinar se o cabeçalho deve ser exibido neste componente
     // Por exemplo, se houver um estado específico que indique que o cabeçalho deve ser exibido
